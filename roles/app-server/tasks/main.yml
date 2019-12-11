@@ -1,7 +1,5 @@
 ---
-# tasks file for tomcat
-
-
+# Tomcat tasks
 
 - name: install tomcat
   yum:
@@ -22,7 +20,7 @@
 
 - name: copy static index.html to tomcat webapps/ansible/index.html
   template:
-    src: index.html.k2 # just so we show it doesn't need to be j2 (it should be j2)
+    src: index.html.k2
     dest: /usr/share/tomcat/webapps/ansible/index.html
     mode: 0644
 
@@ -30,14 +28,3 @@
   service:
     name: tomcat
     state: started
-
-#
-# - name: copy static index.html to tomcat webapps/ansible/index.html
-#   template:
-#     src: index.html.app1
-#     dest: /usr/share/tomcat/webapps/ansible/index.html
-#
-# - name: copy static index.html to tomcat webapps/ansible/index.html
-#   template:
-#     src: index.html.app2
-#     dest: /usr/share/tomcat/webapps/ansible/index.html
