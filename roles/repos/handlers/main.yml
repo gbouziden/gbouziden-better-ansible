@@ -1,0 +1,4 @@
+---
+# handlers file for repos
+- name: clean yum repos cache
+  shell: "yum clean all"

@@ -1,0 +1,42 @@
+---
+
+
+
+- name: configure repos on all hosts
+  hosts: 
+    - apps
+    - frontends
+    - appdbs
+  gather_facts: false
+  roles:
+     - repos
+  tags:
+    - configure_repos
+    - tested
+
+- name: configure HA proxy on fronend machines
+  hosts: frontends
+  gather_facts: false
+  roles:
+    - haproxy
+  tags:
+    - configure_haproxy
+    - tested
+
+
+- name: configure app-servers
+  hosts: apps
+  gather_facts: false
+  roles:
+    - app-server
+  tags:
+    - configure_app-server
+    - tested
+
+- name: configure db-servers
+  hosts: appdbs
+  gather_facts: false
+  roles:
+    - postgresql
+  tags:
+    - configure_db-servers

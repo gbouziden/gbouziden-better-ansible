@@ -1,0 +1,5 @@
+sudo -i
+        mkdir /home/$SUDO_USER        
+        tar -cpf - -C /etc/skel/ . | tar -C /home/$SUDO_USER -xvf -
+        chown -R ${SUDO_USER}: /home/$SUDO_USER
+        chmod 700 /home/$SUDO_USER

@@ -1,0 +1,43 @@
+---
+# tasks file for tomcat
+
+
+
+- name: install tomcat
+  yum:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - tomcat
+    - httpd
+- name: enable tomcat at boot
+  service:
+    name: tomcat
+    enabled: yes
+
+- name: create ansible tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ansible
+    state: directory
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: index.html.k2 # just so we show it doesn't need to be j2 (it should be j2)
+    dest: /usr/share/tomcat/webapps/ansible/index.html
+    mode: 0644
+
+- name: start tomcat
+  service:
+    name: tomcat
+    state: started
+
+#
+# - name: copy static index.html to tomcat webapps/ansible/index.html
+#   template:
+#     src: index.html.app1
+#     dest: /usr/share/tomcat/webapps/ansible/index.html
+#
+# - name: copy static index.html to tomcat webapps/ansible/index.html
+#   template:
+#     src: index.html.app2
+#     dest: /usr/share/tomcat/webapps/ansible/index.html

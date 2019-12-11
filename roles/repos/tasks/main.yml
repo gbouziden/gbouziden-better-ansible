@@ -1,0 +1,11 @@
+---
+# tasks file for repos
+
+- name: copy over template for yum repo file
+  template:
+    src: /Users/gbouziden/ansible/gbouziden-better-ansible/roles/repos/templates/repos.j2
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+  notify: clean yum repos cache
+#- name: set hostname for hostname
+#  hostname:
+#    name: "{{inventory_hostname}}"
