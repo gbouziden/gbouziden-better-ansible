@@ -1,5 +1,4 @@
 ---
-# tasks file for postgresql
 
 - name: install progress
   yum:
@@ -21,7 +20,6 @@
 - name: initilize postgres
   command: postgresql-setup initdb
   when: pgdata_dir_version_mitzi.stat.exists == False
-
 
 - name: start postgres
   service:
